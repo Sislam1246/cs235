@@ -257,14 +257,12 @@ void LinkedList<T>::invertRest(Node<T>* current_first_ptr)
       head_ptr_ = current_first_ptr;
       return;
     }
-
     else
     {
-      Node<T>* first = current_first_ptr;
-      first->setNext(nullptr);
-      Node<T>* next = current_first_ptr->getNext();
-      invertRest(next);
-      next->setNext(first);
+      current_first_ptr = current_first_ptr->getNext();
+      invertRest(current_first_ptr);
+      current_first_ptr->getNext()->setNext(current_first_ptr);
+      current_first_ptr->setNext(nullptr);
     }
 }
 

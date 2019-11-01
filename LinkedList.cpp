@@ -217,11 +217,11 @@ void LinkedList<T>::rotate(int k)    //get position to last node, point last nod
 {
     if (k == 0)
     {
-        return;
+        return;          //base case
     }
     else
     {
-        getNodeAt(item_count_-1)->setNext(head_ptr_);
+        getNodeAt(item_count_-1)->setNext(head_ptr_);       //we must get size of list
         head_ptr_ = getNodeAt(item_count_-1);
         getNodeAt(item_count_-1)->setNext(nullptr);
         rotate(k-1);
@@ -252,15 +252,14 @@ Node<T>* LinkedList<T>::getNodeAt(int position) const
 template<class T>
 void LinkedList<T>::invertRest(Node<T>* current_first_ptr)
 {
-    if(current_first_ptr->getNext() == nullptr || current_first_ptr == nullptr)
+    if(current_first_ptr->getNext() == nullptr || current_first_ptr == nullptr)   //base case
     {
       head_ptr_ = current_first_ptr;
       return;
     }
     else
-    {
-      current_first_ptr = current_first_ptr->getNext();
-      invertRest(current_first_ptr);
+    {                        //first pointer
+      invertRest(current_first_ptr->getNext());                                   //recursive call and traversing the list
       current_first_ptr->getNext()->setNext(current_first_ptr);
       current_first_ptr->setNext(nullptr);
     }

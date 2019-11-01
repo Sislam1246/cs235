@@ -206,14 +206,26 @@ T LinkedList<T>::getEntry(int position) const
 template<class T>
 void LinkedList<T>::invert()
 {
-  Node<T> first_ = head_ptr_;
-  invertRest(head_ptr_->getNext());
+  if(!isEmpty())
+  {
+      invertRest(head_ptr_);
+  }
 }
 
-void template<class T>::rotate(int k)    //get position to last node, point last node to first node, do that k times
+template<class T>
+void LinkedList<T>::rotate(int k)    //get position to last node, point last node to first node, do that k times
 {
-  Node<T>* x = getNodeAt(k);
-  if ()      //base case
+    if (k == 0)
+    {
+        return;
+    }
+    else
+    {
+        getNodeAt(item_count_-1)->setNext(head_ptr_);
+        head_ptr_ = getNodeAt(item_count_-1);
+        getNodeAt(item_count_-1)->setNext(nullptr);
+        rotate(k-1);
+    }
 }
 
 
@@ -240,21 +252,20 @@ Node<T>* LinkedList<T>::getNodeAt(int position) const
 template<class T>
 void LinkedList<T>::invertRest(Node<T>* current_first_ptr)
 {
-  Node<T> first_ = current_first_ptr;
-  Node<T> next_ = current_first_ptr->getNext();
+    if(current_first_ptr->getItem()=nullptr || current_first_ptr=nullptr)
+    {
+      head_ptr_ = current_first_ptr;
+      return;
+    }
 
-  if(current_first_ptr == nullptr)     //base case
-  {
-    return;
-  }
-  else {
-  //  Node<T> first_ = current_first_ptr;
-    //first_->setNext(nullptr);
-  //  Node<T> next_ = current_first_ptr->getNext();
-    invertRest(next_);
-    next_->setNext(first_);
-    first_->setNext(nullptr);
-  }
+    else
+    {
+      Node<T>* first = current_first_ptr;
+      first->setNext(nullptr);
+      Node<T>* next = current_first_ptr->getNext();
+      invertRest(next);
+      next->setNext(first);
+    }
 }
 
 //  End of implementation file.

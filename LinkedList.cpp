@@ -203,7 +203,18 @@ T LinkedList<T>::getEntry(int position) const
     }  // end if
 }  // end getEntry
 
+template<class T>
+void LinkedList<T>::invert()
+{
+  Node<T> first_ = head_ptr_;
+  invertRest(head_ptr_->getNext());
+}
 
+void template<class T>::rotate(int k)    //get position to last node, point last node to first node, do that k times
+{
+  Node<T>* x = getNodeAt(k);
+  if ()      //base case
+}
 
 
 
@@ -226,7 +237,24 @@ Node<T>* LinkedList<T>::getNodeAt(int position) const
     return cur_ptr;
 }  // end getNodeAt
 
+template<class T>
+void LinkedList<T>::invertRest(Node<T>* current_first_ptr)
+{
+  Node<T> first_ = current_first_ptr;
+  Node<T> next_ = current_first_ptr->getNext();
 
-
+  if(current_first_ptr == nullptr)     //base case
+  {
+    return;
+  }
+  else {
+  //  Node<T> first_ = current_first_ptr;
+    //first_->setNext(nullptr);
+  //  Node<T> next_ = current_first_ptr->getNext();
+    invertRest(next_);
+    next_->setNext(first_);
+    first_->setNext(nullptr);
+  }
+}
 
 //  End of implementation file.

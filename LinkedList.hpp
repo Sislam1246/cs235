@@ -3,11 +3,13 @@
 //
 //  Modified by Tiziana Ligorio for Hunter College CSCI 235
 //  modified position s.t. 0 <= position < item_count_
-//  some style modification, mainly variable names 
+//  some style modification, mainly variable names
 
 /** ADT list: Singly linked list implementation.
     Listing 9-2.
     @file LinkedList.h */
+
+//Modifies by Syed Islam
 
 #ifndef LINKED_LIST_
 #define LINKED_LIST_
@@ -60,8 +62,18 @@ public:
             throws  PrecondViolatedExcep */
    T getEntry(int position) const;
 
+   // A wrapper to a recursive method that inverts the contents of the list
+   // @post the contents of the list are inverted such that
+   // the item previously at position 1 is at position item_count_,
+   // the item previously at position 2 is at position item_count_-1 ...
+   // the item previously at position ⌊item_count/2⌋ is at position
+   //⌈item_count_/2⌉
+   void invert();
 
-
+   // @pre k >= 0
+   // @post the contents of the list are rotated to the right by k places, s.t.
+   // every element at position i shifts to position i+k % item_count_
+   void rotate(int k);
 
 
 private:
@@ -77,6 +89,15 @@ private:
     //       0 <= position < item_count_
     // @return  A pointer to the node at the given position or nullptr if position is >= item_count_
     Node<T>* getNodeAt(int position) const;
+
+    //private function to invert, used for safe programming to avoid
+    //exposing pointers to list in public methods
+    // @post the contents of the list are inverted such that
+    // the item previously at position 1 is at position item_count_,
+    // the item previously at position 2 is at position item_count_-1 ...
+    // the item previously at position ⌊item_count/2⌋ is at position
+    //⌈item_count_/2⌉
+    void invertRest(Node<T>* current_first_ptr);
 
 
 

@@ -252,7 +252,7 @@ Node<T>* LinkedList<T>::getNodeAt(int position) const
 template<class T>
 void LinkedList<T>::invertRest(Node<T>* current_first_ptr)
 {
-    if(current_first_ptr->getNext()=nullptr || current_first_ptr=nullptr)
+    if(current_first_ptr->getNext() == nullptr || current_first_ptr == nullptr)
     {
       head_ptr_ = current_first_ptr;
       return;
